@@ -9,3 +9,11 @@ h1 {
     font: monospace;
     color: red;
 }
+
+li 	{
+	list-style: none;
+	border: solid black 2px;
+	border-radius: 5px;
+	margin: 5px auto 5px auto;
+	width: 25%;
+}

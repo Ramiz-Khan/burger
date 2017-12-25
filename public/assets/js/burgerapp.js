@@ -22,13 +22,21 @@ $(function() {
 
     });
 
-    $("#submit").on("submit", function (event) {
+    $(".create-burg").on("submit", function (event) {
         event.preventDefault();
 
         var newBurg = {
-            name: 
-            deva
-        }
+            name: $("#bg").val().trim(),
+            devoured: $("[name=devoured:checked").val().trim()
+        };
+
+        $.ajax("/api/newburg", {
+            type: "POST",
+            data: newBurg
+        }).then(function() {
+            console.log("created new burger");
+            location.reload();
+        })
     });
 
 

@@ -3,7 +3,7 @@ var method = require("method-override");
 var bodyParser = require("body-parser");
 
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3306;
 
 // Requiring our models for syncing
 var db = require("./models/burger.js");
@@ -12,7 +12,6 @@ var db = require("./models/burger.js");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Static directory
 app.use(express.static("public"));
