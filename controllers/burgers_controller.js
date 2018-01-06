@@ -6,24 +6,50 @@ var burger = require(".././models/burger.js");
 
 
 router.get("/", function(req, res) {
-    burger.all(function (data) {
+    burger.all("", function (data) {
         var hbsObject = {
             burger: data
         };
 
-        console.log(hbsObject);
         res.render("index", hbsObject);
+
+        console.log(hbsObject);
 
     });
 });
 
-router.post("api/newburg", function(req, res) {
+router.get("/api/newburg", function(req, res) {
+
+    
+    burger.all("", function (data) {
+        var burgs = {
+            burger: data
+        }; 
+        res.json(burgs);
+
+    });
+ });
+
+router.post("/api/newburg", function(req, res) {
+    burger.all("burgers", function (burgs) {
+        var burgs = {
+            burger: data
+        }; 
+        res.json(burgs);
+
+    });
+});
+
+
+router.post("/api/newburg", function(req, res) {
     burger.create([
         'burger_name','devoured'
     ], [
-        req.body.name, req.body.devoured
+        req.body.burger_name, req.body.devoured
     ], function(result) {
         res.json({ id: result.insertId });
+
+        console.log(result)
     });
 });
 

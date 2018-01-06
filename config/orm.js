@@ -1,14 +1,14 @@
 var connection = require("./connection.js");
 
-function printQuestionMarks(num) {
-    var arr = [];
+// function printQuestionMarks(num) {
+//     var arr = [];
   
-    for (var i = 0; i < num; i++) {
-      arr.push("?");
-    }
+//     for (var i = 0; i < num.length; i++) {
+//       arr.push("?");
+//     }
   
-    return arr.toString();
-  }
+//     return arr.toString();
+//   }
   
   // Helper function to convert object key/value pairs to SQL syntax
   function objToSql(ob) {
@@ -51,7 +51,7 @@ function printQuestionMarks(num) {
       queryString += cols.toString();
       queryString += ") ";
       queryString += "VALUES (";
-      queryString += printQuestionMarks(vals.length);
+      queryString += vals;
       queryString += ") ";
   
       console.log(queryString);

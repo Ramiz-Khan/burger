@@ -1,19 +1,25 @@
+var burger = require(".././models/burger.js");
+
+
+
 $(function() {
-    $(".change-devoured").on("click", function (event) {
-        var id = $(this).data("id");
-        var devoured = $(this).data("devoured");
+    $("btn.btn-danger.change-devoured").on("click", function (event) {
+        var id = this.data("id");
+        var devoured = this.data("devoured");
 
         var newDevState = {
             devouredState: devoured
         };
 
         //PUT call
-        $.ajax("/api/newburg/"+id, {
+        $.ajax({
             type: "PUT",
-            data: newDevState
+            data: newDevState, 
+            url: "/api/newburg/"+id,
+            
         }).then(
-            function() {
-                console.log("changed Devoured state to: ", newDevState);
+            function(data) {
+                console.log("changed Devoured state to: ", data);
 
                 location.reload();
 
@@ -22,23 +28,29 @@ $(function() {
 
     });
 
-    $(".create-burg").on("submit", function (event) {
+});
+
+function () {
+    $("#newburg").on("submit", function (event) {
         event.preventDefault();
 
         var newBurg = {
-            name: $("#bg").val().trim(),
+            burger_name: $("#bg").val().trim(),
             devoured: $("[name=devoured:checked").val().trim()
         };
 
-        $.ajax("/api/newburg", {
+        $.ajax( {
             type: "POST",
-            data: newBurg
-        }).then(function() {
-            console.log("created new burger");
+            data: JSON.stringify(newBurg),
+            url: "/api/newburg",
+            contentType: "application/json"
+        }).then(function(data) {
+
+            console.log("created new burger"+data);
             location.reload();
         })
     });
 
 
 
-})
+}
