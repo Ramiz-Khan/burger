@@ -25,18 +25,18 @@
 
         <form class="create-burg" action="/" type="POST">
 
-            <div class="form-group">
+            
                 <label for="bg">Burger Name:</label>
                 <input type="text" id="bg" name="burger_name">
-            </div>
+            
 
-            <div class="form-group" >
+            
                 <label for="devoured">Devoured?</label><br>
                 <input type="radio" name="devoured" value="1" checked> Devoured!<br>
                 <input type="radio" name="devoured" value="0"> Devour Me!
-            </div>
+            
 
-            <button class="btn btn-primary" id="newburg" type="submit">Add Burger</button>
+            <button class="btn btn-primary" id="submitBurg" action="submit" onclick="subBurg()">Add Burger</button>
 
         </form>
 

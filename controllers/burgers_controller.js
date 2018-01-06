@@ -31,7 +31,7 @@ router.get("/api/newburg", function(req, res) {
  });
 
 router.post("/api/newburg", function(req, res) {
-    burger.all("burgers", function (burgs) {
+    burger.all("", function (burgs) {
         var burgs = {
             burger: data
         }; 
@@ -45,7 +45,7 @@ router.post("/api/newburg", function(req, res) {
     burger.create([
         'burger_name','devoured'
     ], [
-        req.body.burger_name, req.body.devoured
+        req.params.burger_name, req.params.devoured
     ], function(result) {
         res.json({ id: result.insertId });
 
@@ -53,14 +53,21 @@ router.post("/api/newburg", function(req, res) {
     });
 });
 
-router.put("/api/newburg/:id", function(req, res) {
+router.put("/api/newburg/", function(req, res) {
     var condition = "id = " + req.params.id;
   
     console.log("condition", condition);
 
-    burger.update({
+    burger.update("", {
         devoured: req.body.devoured
-      }, condition, function(result) {
+      }, condition, function(data) {
+
+        burgs = {
+            burger: data
+        };
+
+        console.log("Updated Burger" + burgs);
+
         if (result.changedRows == 0) {
           // If no rows were changed, then the ID must not exist, so 404
           return res.status(404).end();
